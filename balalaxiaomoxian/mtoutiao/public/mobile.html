@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,
+    maximum-scale-1.0,minimum-scale=1.0">
+    <title>移动头条</title>
+    <link rel="stylesheet" href="./mobile.css">
+</head>
+
+<body>
+    <section class="tt-m-index">
+        <section class="tt-m-header">
+            <section class="header">
+                <section class="header-email">邮件</section>
+                <section class="header-title">头条</section>
+                <section class="header-search">搜索</section>
+            </section>
+            <section class="tt-m-tab">
+                <section class="tab-nav">
+                    <a href="">推荐</a>
+                    <a href="">视频</a>
+                    <a href="">热点</a>
+                    <a href="">社会</a>
+                    <a href="">娱乐</a>
+                    <a href="">军事</a>
+                    <a href="">科技</a>
+                    <a href="">汽车</a>
+                    <a href="">房产</a>
+                    <a href="">家居</a>
+                    <a href="">体育</a>
+                    <a href="">财经</a>
+                </section>
+                <section class="tab-more">+</section>
+            </section>
+        </section>
+
+        <section class="tt-m-content">
+            <section class="content-list">
+
+            </section>
+        </section>
+
+
+    </section>
+</body>
+<script src="./js/setRem.js"></script>
+<script src="./js/zepto.js"></script>
+
+<script>
+    $.ajax({
+        type: "post",
+        url: "http://tt.linweiqin.com/api/tt/getArticles",
+        data: {
+            lastid: 0,
+            page: 0,
+            number: 20
+        },
+        dataType: "json",
+        success(data, status, xhr) {
+            let articles = data.articles
+            let items = articles.map(v => {
+                return `
+                <a href="./transfer.html?nid=${v.nid}" class="list-item">
+                    <section class="item-title">${v.title}</section>
+                    <section class="item-time">${v.created_at}</section>
+                </a>
+                `
+            })
+            $('.content-list').append(items)
+        },
+        error(xhr, errorType, error) {},
+        complete(xhr, status) {}
+    })
+</script>
+
+</html>

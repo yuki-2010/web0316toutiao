@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <div class="nav-item">123</div>
-      <div class="nav-item">123</div>
-      <div class="nav-item">123</div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -19,12 +15,20 @@ export default {
 };
 </script>
 
-<style  lang='less' scoped>
-#app {
-  .nav {
-    .nav-item {
-      color: red;
-    }
-  }
+<style  lang='less'>
+* {
+  --themeColor: #ea4245;
+}
+.tt-message {
+  line-height: 50px;
+  font-size: 16px;
+  color: #6ac144;
+  text-align: center;
+  left: 50%;
+  position: fixed;
+  top: 0;
+  width: 400px;
+  height: 50px;
+  margin-left: -200px;
 }
 </style>
